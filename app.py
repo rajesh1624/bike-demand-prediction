@@ -81,7 +81,9 @@ if st.button("Predict"):
 
     with st.spinner("Predicting..."):
         response = requests.post(API_URL, json=input_data)
-        result = response.json()["prediction"]
+        st.write("Status Code:", response.status_code)
+        st.write("Response Text:", response.text)
+        #result = response.json()["prediction"]
 
-    st.subheader("📈 Prediction Result")
-    st.success(f"🚴 Estimated Bike Demand: {int(result)} bikes/day")
+    #st.subheader("📈 Prediction Result")
+    #st.success(f"🚴 Estimated Bike Demand: {int(result)} bikes/day")
