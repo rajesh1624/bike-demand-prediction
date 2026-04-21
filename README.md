@@ -1,43 +1,42 @@
-# 🚴 Bike Demand Prediction (End-to-End ML Project)
+# 🚴 Bike Demand Prediction (End-to-End ML System)
 
 ## 📌 Overview
 
-This project builds an end-to-end machine learning system to predict daily bike rental demand based on environmental and seasonal factors.
+This project builds and deploys a **production-ready machine learning system** to predict daily bike rental demand based on weather, seasonal, and temporal features.
 
-The pipeline includes:
+The system includes:
 
 * Data analysis (EDA)
 * Feature engineering
-* Model building
-* Model evaluation
-* API development (FastAPI)
-* Frontend UI (Streamlit)
+* Model training
+* REST API development using FastAPI (POST /predict endpoint for model inference)
+* Interactive UI using Streamlit
+* Cloud deployment using Render
+
+---
+
+## 🌐 Live Demo (🔥)
+
+👉 **Streamlit UI:**
+https://bike-demand-ui.onrender.com
+
+👉 **FastAPI Docs:**
+https://bike-demand-api.onrender.com/docs
 
 ---
 
 ## 🎯 Problem Statement
 
-Bike-sharing systems generate large amounts of data influenced by weather, seasonality, and time. Predicting demand helps optimize operations and improve user experience.
-
----
-
-## 🎯 Objective
-
-* Analyze factors affecting bike demand
-* Identify important features
-* Build a predictive model
-* Deploy using API + UI
+Bike-sharing demand fluctuates due to environmental and seasonal factors. Accurate prediction helps optimize fleet availability and improve operational efficiency.
 
 ---
 
 ## 💼 Business Use Case
 
-This system helps:
-
-* Optimize bike availability
+* Optimize bike distribution
+* Reduce shortages and over-supply
 * Improve customer satisfaction
-* Reduce operational costs
-* Enable data-driven decision making
+* Enable data-driven planning
 
 ---
 
@@ -59,90 +58,104 @@ This system helps:
 ## ⚙️ Model Used
 
 * Linear Regression (baseline model)
-* Focus on interpretability and simplicity
+* Chosen for simplicity and interpretability
 
 ---
 
-## 📊 Model Evaluation
+## 📊 Model Performance
 
 * R² Score ≈ 0.84
 * RMSE ≈ 800 bikes
 
-👉 The model explains ~84% of variance with reasonable prediction error.
+👉 Model explains ~84% variance in demand.
 
 ---
 
 ## ⚠️ Limitation
 
-Linear Regression can produce negative predictions.
+Linear regression may produce negative predictions.
 
-✔ Solution:
+✔ Fix applied:
 
-```python
+```
 prediction = max(0, int(result))
 ```
 
 ---
 
-## 🚀 Project Architecture
+## 🏗️ System Architecture
 
 ```
-User Input (Streamlit)
+User (Streamlit UI)
         ↓
-FastAPI API (/predict)
+FastAPI (/predict endpoint)
         ↓
-Trained Model (.pkl)
+Trained ML Model (.pkl)
         ↓
-Prediction Output
+Prediction Response
         ↓
 Displayed in UI
 ```
 
 ---
 
-## 🖥️ How to Run
+## ⚡ Deployment Architecture
 
-### 1. Create Virtual Environment
+* Backend deployed on **Render (FastAPI)**
+* Frontend deployed on **Render (Streamlit)**
+* Communication via REST API
 
-```bash
-uv venv
-.venv\Scripts\activate
+---
+
+## 🧪 Example
+
+* Clear weather + working day → High demand
+* Rainy weather → Low demand
+
+✔ Model reflects real-world patterns.
+
+---
+
+## 🚀 How to Run Locally
+
+```
+pip install -r requirements.txt
 ```
 
-### 2. Install Dependencies
+### Run API
 
-```bash
-uv pip install -r requirements.txt
 ```
-
-### 3. Run API
-
-```bash
 uvicorn src.api:app --reload
 ```
 
-### 4. Run Streamlit
+### Run UI
 
-```bash
+```
 streamlit run app.py
 ```
 
 ---
 
-## 🧪 Example Test
+## 🔥 Key Learnings
 
-* Bad weather → low demand
-* Good weather → high demand
+* Built full ML pipeline (data → model → API → UI)
+* Deployed ML system on cloud (Render)
+* Handled API-UI integration issues
+* Debugged real-world errors:
 
-✔ Model behaves logically based on real-world patterns.
+  * JSONDecodeError
+  * Deployment failures
+  * Dependency issues
+* Understood production-level architecture
 
 ---
 
 ## 🔮 Future Improvements
 
-* Use advanced models (Random Forest, XGBoost)
-* Hyperparameter tuning
-* Better feature engineering
+* Use advanced models (XGBoost, Random Forest)
+* Add model monitoring
+* Improve UI/UX
+* Add Docker containerization
 
 ---
 
@@ -153,9 +166,10 @@ streamlit run app.py
 * Scikit-learn
 * FastAPI
 * Streamlit
+* Render (Cloud Deployment)
 
 ---
 
 ## 👤 Author
 
-Rajesh Chauhan
+**Rajesh Chauhan**
